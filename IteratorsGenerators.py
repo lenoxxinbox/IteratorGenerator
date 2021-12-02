@@ -44,7 +44,10 @@ print('*' * 100)
 def flat_generator(nested_list):
     for n in nested_list:
         for a in n:
-            yield a
+            if type(a) is list:
+                yield from flat_generator(a)
+            else:
+                yield a
 
 
 for item in flat_generator(nested_list):
